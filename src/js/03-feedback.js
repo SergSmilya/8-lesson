@@ -8,10 +8,6 @@ formEl.addEventListener('submit', onButtonClick);
 formEl.addEventListener('input', throttle(onFormInput, 500));
 
 const dataForm = {};
-
-const dataFromStorage = JSON.parse(localStorage.getItem('feedback-form-state'));
-dataFrom = dataFromStorage;
-console.log(dataFrom);
 saveData();
 
 function onButtonClick(evt) {
@@ -30,8 +26,14 @@ function onFormInput(e) {
 }
 
 function saveData() {
+  const dataFromStorage = JSON.parse(
+    localStorage.getItem('feedback-form-state')
+  );
   if (dataFromStorage) {
-    formEl.elements.email.value = dataFromStorage.email ?? '';
-    formEl.elements.message.value = dataFromStorage.message ?? '';
+    inputEl.value = dataFromStorage.email ?? '';
+    textareaEl.value = dataFromStorage.message ?? '';
+
+    dataForm.email = dataFromStorage.email ?? '';
+    dataForm.message = dataFromStorage.message ?? '';
   }
 }

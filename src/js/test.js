@@ -1,46 +1,48 @@
-// const feedbackForm = document.querySelector('.feedback-form');
-// const input = document.querySelector('input');
-// const textarea = document.querySelector('textarea');
+// ***************************
 
-// const KEY_STORAGE = 'feedback-form-state';
+const feedbackForm = document.querySelector('.feedback-form');
+const input = document.querySelector('input');
+const textarea = document.querySelector('textarea');
 
-// const formData = {};
+const KEY_STORAGE = 'feedback-form-state';
 
-// writeValueInputStartPage();
+const formData = {};
 
-// feedbackForm.addEventListener('input', onWriteValueLocalStorage);
-// feedbackForm.addEventListener('submit', onSubmitForm);
+writeValueInputStartPage();
 
-// function onWriteValueLocalStorage(e) {
-//   writeFormData(e);
+feedbackForm.addEventListener('input', onWriteValueLocalStorage);
+feedbackForm.addEventListener('submit', onSubmitForm);
 
-//   const formDataString = JSON.stringify(writeFormData(e));
-//   localStorage.setItem(KEY_STORAGE, formDataString);
-// }
+function onWriteValueLocalStorage(e) {
+  writeFormData(e);
 
-// function onSubmitForm(e) {
-//   e.preventDefault();
+  const formDataString = JSON.stringify(writeFormData(e));
+  localStorage.setItem(KEY_STORAGE, formDataString);
+}
 
-//   feedbackForm.reset();
-//   console.log(writeFormData(e));
+function onSubmitForm(e) {
+  e.preventDefault();
 
-//   localStorage.removeItem(KEY_STORAGE);
-// }
+  feedbackForm.reset();
+  console.log(formData);
 
-// function writeFormData(e) {
-//   formData[e.target.name] = e.target.value;
+  localStorage.removeItem(KEY_STORAGE);
+}
 
-//   return formData;
-// }
+function writeFormData(e) {
+  formData[e.target.name] = e.target.value;
 
-// function writeValueInputStartPage() {
-//   if (localStorage.getItem(KEY_STORAGE)) {
-//     const { email, message } = JSON.parse(localStorage.getItem(KEY_STORAGE));
+  return formData;
+}
 
-//     input.value = email ?? '';
-//     textarea.value = message ?? '';
+function writeValueInputStartPage() {
+  if (localStorage.getItem(KEY_STORAGE)) {
+    const { email, message } = JSON.parse(localStorage.getItem(KEY_STORAGE));
 
-//   *  formData.email = email ?? '';
-//   *  formData.message = message ?? '';
-//   }
-// }
+    input.value = email ?? '';
+    textarea.value = message ?? '';
+
+    formData.email = email ?? '';
+    formData.message = message ?? '';
+  }
+}
