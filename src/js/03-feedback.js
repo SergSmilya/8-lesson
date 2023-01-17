@@ -8,10 +8,11 @@ formEl.addEventListener('input', throttle(onFormInput, 500));
 const dataForm = {};
 saveData();
 
-function onButtonClick(e) {
-  e.preventDefault();
+function onButtonClick(evt) {
+  evt.preventDefault();
 
   console.log(localStorage.getItem('feedback-form-state'));
+
   formEl.reset();
   localStorage.removeItem('feedback-form-state');
 }
